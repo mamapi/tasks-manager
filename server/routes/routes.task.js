@@ -1,12 +1,13 @@
-const TaskController = require('./controllers/task');
+const TaskController = require('../controllers/task')
 
 exports.registerRoutes = (server) => {
+    
     return server.route([
         {
             method: 'GET',
             path: '/tasks',
             options: {
-                handler: TaskController.list
+                handler: TaskController.list,
             }
         },
         {
@@ -35,3 +36,4 @@ exports.registerRoutes = (server) => {
         }
     ])
 };
+
