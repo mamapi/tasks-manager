@@ -1,3 +1,4 @@
+const Boom = require('boom');
 const Task = require('../models').Task;
 
 /**
@@ -31,6 +32,10 @@ exports.create = (req, h) => {
 exports.update = async (req, h) => {
     const id = req.params.id
     const task = await Task.findById(id)
+    if (!task) {
+        throw Boom.notFound('Task not found.')
+    }
+
     return task.update({
         name: req.payload.name,
         description: req.payload.description
@@ -43,5 +48,9 @@ exports.update = async (req, h) => {
 exports.remove = async (req, h) => {
     const id = req.params.id
     const task = await Task.findById(id)
+    if (!task) {
+        throw Boom.notFound('Task not found.')
+    }
+
     return task.remove();
 }
