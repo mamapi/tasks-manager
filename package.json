@@ -9,6 +9,7 @@
   "author": "Grzegorz Gorczynski",
   "license": "ISC",
   "dependencies": {
+    "boom": "^7.2.0",
     "hapi": "^17.5.2",
     "joi": "^13.4.0",
     "mysql2": "^1.5.3",
