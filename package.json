@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "lab -t 33",
+    "test-cov-html": "lab -r html -o coverage.html"
   },
   "author": "Grzegorz Gorczynski",
   "license": "ISC",
@@ -16,6 +17,8 @@
     "sequelize": "^4.38.0"
   },
   "devDependencies": {
+    "code": "^5.2.0",
+    "lab": "^15.5.0",
     "sequelize-cli": "^4.0.0"
   }
 }
