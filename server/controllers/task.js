@@ -1,5 +1,5 @@
 const Boom = require('boom');
-const Task = require('../models').Task;
+const { Task } = require('../models');
 
 /**
  * List tasks
@@ -52,5 +52,5 @@ exports.remove = async (req, h) => {
         throw Boom.notFound('Task not found.')
     }
 
-    return task.remove();
+    return task.destroy();
 }
