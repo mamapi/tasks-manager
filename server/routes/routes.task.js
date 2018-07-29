@@ -13,7 +13,14 @@ exports.registerRoutes = (server) => {
         {
             method: 'GET',
             path: '/tasks/{id}',
-            handler: TaskController.get
+            handler: TaskController.get,
+            options: {
+                validate: {
+                    params: {
+                        id: Joi.number().integer().min(1).required()
+                    }
+                }
+            }
         },
         {
             method: 'POST',
