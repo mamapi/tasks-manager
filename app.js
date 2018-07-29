@@ -4,9 +4,9 @@ const Hapi = require('hapi');
 
 const taskRoutes = require('./server/routes/routes.task')
 
-const server = new Hapi.server({
+const server = new Hapi.Server({
     host: 'localhost',
-    port: 3000,
+    port: process.env.PORT || 3000,
 });
 
 const registerRoutes = () => {
@@ -24,3 +24,5 @@ initServer().then(server => {
 }).catch(err => {
     console.log(err);
 })
+
+module.exports = server;
