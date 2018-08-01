@@ -1,11 +1,18 @@
 import React from 'react'
-import TaskList from './tasks/TaskList'
+import { BrowserRouter, Route } from 'react-router-dom'
 
-const App = (props) => {
+import TaskList from './tasks/TaskList'
+import AddNewTask from './tasks/AddNewTask'
+
+const App = () => {
   return (
-    <div className="App">
-      <TaskList />
-    </div>
+    <BrowserRouter >
+      <div className="App">
+        <Route path='/' component={TaskList} />
+        <Route path='/create' component={Create} />
+        <Route path='/add' component={AddNewTask} />
+      </div>
+    </BrowserRouter>
   )
 }
 
