@@ -62,5 +62,6 @@ exports.registerRoutes = (server) => {
 
 const taskValidator = {
     'name': Joi.string().min(1).max(100).required(),
-    'description': Joi.string().max(255)
+    'description': Joi.string().max(255),
+    'status': Joi.string().min(1).max(20).required(),
 }

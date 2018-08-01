@@ -19,11 +19,8 @@ exports.get = (req, h) => {
  * Create a task
  */
 exports.create = (req, h) => {
-    const taskData = {
-        name: req.payload.name,
-        description: req.payload.description
-    };
-    return Task.create(taskData)
+    const { name, description, status } = req.payload
+    return Task.create({ name, description, status })
 }
 
 /**
@@ -36,17 +33,15 @@ exports.update = async (req, h) => {
         throw Boom.notFound('Task not found.')
     }
 
-    return task.update({
-        name: req.payload.name,
-        description: req.payload.description
-    });
+    const { name, description, status } = req.payload
+    return task.update({ name, description, status });
 }
 
 /**
  * Delete task by ID
  */
 exports.remove = async (req, h) => {
-    const id = req.params.id
+    const { id } = req.params
     const task = await Task.findById(id)
     if (!task) {
         throw Boom.notFound('Task not found.')

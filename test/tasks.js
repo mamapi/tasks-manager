@@ -5,15 +5,15 @@ const { it, describe, before } = exports.lab = require('lab').script()
 
 const { Task, sequelize } = require('../server/models');
 
-const Server = require('../app');
+const Server = require('../server');
 
 describe('Task controller', function () {
 
     before(async () => {
         await Task.sync({ force: true })
         await sequelize.sync({ force: true });
-        await Task.create({ name: 'Task 1', description: 'Task 1 description' })
-        await Task.create({ name: 'Task 2', description: 'Task 2 description' })
+        await Task.create({ name: 'Task 1', description: 'Task 1 description', status: 'New' })
+        await Task.create({ name: 'Task 2', description: 'Task 2 description', status: 'Complate' })
     });
 
 
@@ -64,7 +64,8 @@ describe('Task controller', function () {
             url: '/tasks',
             payload: {
                 name: 'New task 1',
-                description: 'Task 1 description'
+                description: 'Task 1 description',
+                status: 'New'
             }
         };
 
@@ -77,6 +78,7 @@ describe('Task controller', function () {
         expect(result.id).to.number();
         expect(result.name).to.equal(payload.name);
         expect(result.description).to.equal(payload.description);
+        expect(result.status).to.equal(payload.status);
         expect(result.createdAt).to.date();
         expect(result.updatedAt).to.date();
     });
