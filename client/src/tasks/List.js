@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import { Grid, Row, Col, Table, Button, Glyphicon } from 'react-bootstrap';
 import ListRow from './ListRow'
 
 class List extends Component {
@@ -24,16 +25,17 @@ class List extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="panel panel-default">
-          <div className="panel-heading">
-            <h3 className="panel-title">
-              Task list
-                </h3>
-          </div>
-          <div className="panel-body">
-            <h4><Link to="/create"><span className="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Task</Link></h4>
-            <table className="table table-stripe">
+      <Grid>
+        <Row>
+          <Col xs={12}><h3>Task list</h3></Col>
+        </Row>
+
+        <Row>
+          <Col xs={12}>
+            <Button bsStyle="primary" href="/create">
+              <Glyphicon glyph="plus-sign" />Add task
+            </Button>
+            <Table>
               <thead>
                 <tr>
                   <th>ID</th>
@@ -46,10 +48,10 @@ class List extends Component {
                   <ListRow {...task} />
                 )}
               </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+            </Table>
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 

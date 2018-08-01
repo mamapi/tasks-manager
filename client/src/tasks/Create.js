@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Button, ButtonToolbar, Form, FormGroup, Col, FormControl, ControlLabel } from 'react-bootstrap'
+
 
 class Create extends Component {
 
@@ -34,22 +36,36 @@ class Create extends Component {
             <div className="container">
                 <div className="panel panel-default">
                     <div className="panel-heading">
-                        <h3 className="panel-title">
-                            ADD TASK
-            </h3>
+                        <h3 className="panel-title">Add task</h3>
                     </div>
                     <div className="panel-body">
-                        <h4><Link to="/"><span className="glyphicon glyphicon-th-list" aria-hidden="true"></span> Task List</Link></h4>
                         <form onSubmit={this.onSubmit}>
-                            <div className="form-group">
-                                <label htmlFor="name">Name:</label>
-                                <input type="text" className="form-control" name="name" value={name} onChange={this.onChange} placeholder="Enter task name" />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="description">Description:</label>
-                                <textarea className="form-control" name="description" onChange={this.onChange} placeholder="Enter description" cols="80" rows="3" value={description} />
-                            </div>
-                            <button type="submit" className="btn btn-default">Submit</button>
+                            <FormGroup>
+                                <ControlLabel>Name</ControlLabel>
+                                <input type="text"
+                                    className="form-control"
+                                    name="name" value={name}
+                                    onChange={this.onChange}
+                                    placeholder="Enter task name" />
+                            </FormGroup>
+
+                            <FormGroup>
+                                <ControlLabel>Description</ControlLabel>
+                                <textarea
+                                    className="form-control"
+                                    name="description"
+                                    value={description}
+                                    onChange={this.onChange}
+                                    placeholder="Enter description"
+                                    cols="80" rows="3"
+                                />
+                            </FormGroup>
+
+                            <ButtonToolbar>
+                                <Button bsStyle="success" type="submit">Submit</Button>
+                                <Button bsStyle="link" href="/">Cancel</Button>
+                            </ButtonToolbar>
+
                         </form>
                     </div>
                 </div>

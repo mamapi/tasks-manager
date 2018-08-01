@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Button, ButtonToolbar } from 'react-bootstrap'
 
 class Show extends Component {
 
@@ -37,15 +38,17 @@ class Show extends Component {
                         </h3>
                     </div>
                     <div className="panel-body">
-                        <h4><Link to="/"><span classNames="glyphicon glyphicon-th-list" aria-hidden="true"></span> Task List</Link></h4>
                         <dl>
                             <dt>Name:</dt>
                             <dd>{this.state.task.name}</dd>
                             <dt>Description:</dt>
                             <dd>{this.state.task.description}</dd>
                         </dl>
-                        <Link to={`/edit/${this.state.task.id}`} className="btn btn-success">Edit</Link>&nbsp;
-            <button onClick={this.delete.bind(this, this.state.task.id)} className="btn btn-danger">Delete</button>
+                        <ButtonToolbar>
+                            <Button bsStyle="success" href={`/edit/${this.state.task.id}`}>Edit</Button>
+                            <Button bsStyle="danger" onClick={this.delete.bind(this, this.state.task.id)}>Delete</Button>
+                            <Button bsStyle="link" href="/">Cancel</Button>
+                        </ButtonToolbar>
                     </div>
                 </div>
             </div>
