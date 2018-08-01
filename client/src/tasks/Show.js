@@ -44,7 +44,7 @@ class Show extends Component {
                             <dt>Description:</dt>
                             <dd>{this.state.task.description}</dd>
                         </dl>
-                        <Link to={`/edit/${this.state.task._id}`} className="btn btn-success">Edit</Link>&nbsp;
+                        <Link to={`/edit/${this.state.task.id}`} className="btn btn-success">Edit</Link>&nbsp;
             <button onClick={this.delete.bind(this, this.state.task.id)} className="btn btn-danger">Delete</button>
                     </div>
                 </div>

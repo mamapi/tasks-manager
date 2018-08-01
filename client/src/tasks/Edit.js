@@ -12,7 +12,7 @@ class Edit extends Component {
     }
 
     componentDidMount() {
-        axios.get('/api/task/' + this.props.match.params.id)
+        axios.get('/api/tasks/' + this.props.match.params.id)
             .then(res => {
                 this.setState({ task: res.data });
                 console.log(this.state.task);
@@ -49,28 +49,12 @@ class Edit extends Component {
                         <h4><Link to={`/show/${this.state.task.id}`}><span className="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Task List</Link></h4>
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
-                                <label for="isbn">ISBN:</label>
-                                <input type="text" className="form-control" name="isbn" value={this.state.task.isbn} onChange={this.onChange} placeholder="ISBN" />
-                            </div>
-                            <div className="form-group">
-                                <label for="title">Title:</label>
-                                <input type="text" className="form-control" name="title" value={this.state.task.title} onChange={this.onChange} placeholder="Title" />
-                            </div>
-                            <div className="form-group">
-                                <label for="author">Author:</label>
-                                <input type="text" className="form-control" name="author" value={this.state.task.author} onChange={this.onChange} placeholder="Author" />
+                                <label for="name">Name:</label>
+                                <input type="text" className="form-control" name="name" value={this.state.task.name} onChange={this.onChange} placeholder="Enter task name" />
                             </div>
                             <div className="form-group">
                                 <label for="description">Description:</label>
-                                <input type="text" className="form-control" name="description" value={this.state.task.description} onChange={this.onChange} placeholder="Description" />
-                            </div>
-                            <div className="form-group">
-                                <label for="published_date">Published Date:</label>
-                                <input type="number" className="form-control" name="published_year" value={this.state.task.published_year} onChange={this.onChange} placeholder="Published Year" />
-                            </div>
-                            <div className="form-group">
-                                <label for="publisher">Publisher:</label>
-                                <input type="text" className="form-control" name="publisher" value={this.state.task.publisher} onChange={this.onChange} placeholder="Publisher" />
+                                <input type="text" className="form-control" name="description" value={this.state.task.description} onChange={this.onChange} placeholder="Enter description" />
                             </div>
                             <button type="submit" className="btn btn-default">Submit</button>
                         </form>
