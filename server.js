@@ -6,7 +6,7 @@ const taskRoutes = require('./server/routes/routes.task')
 
 const server = new Hapi.Server({
     host: 'localhost',
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3001,
 });
 
 const registerRoutes = () => {
