@@ -7,13 +7,15 @@ module.exports = {
         name: 'Task 1 ',
         description: '',
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        status: 'New'
       },
       {
         name: 'Task 2',
         description: '',
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        status: 'New'
       },
 
     ], {});
