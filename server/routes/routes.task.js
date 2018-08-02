@@ -56,7 +56,19 @@ exports.registerRoutes = (server) => {
                     }
                 }
             }
-        }
+        },
+        {
+            method: 'PUT',
+            path: '/tasks/{id}/status',
+            handler: TaskController.updateStatus,
+            options: {
+                validate: {
+                    params: {
+                        id: Joi.number().integer().min(1).required()
+                    }
+                }
+            }
+        },        
     ])
 };
 
