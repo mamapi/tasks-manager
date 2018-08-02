@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
-import { Button, ButtonToolbar, Form, FormGroup, Col, FormControl, ControlLabel } from 'react-bootstrap'
+import { Button, ButtonToolbar, FormGroup, ControlLabel } from 'react-bootstrap'
 
 class Edit extends Component {
 
@@ -29,9 +28,8 @@ class Edit extends Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-        const { name, description } = this.state.task;
-
-        axios.put('/api/tasks/' + this.props.match.params.id, { name, description })
+        const { name, description, status } = this.state.task;
+        axios.put('/api/tasks/' + this.props.match.params.id, { name, description, status })
             .then((result) => {
                 this.props.history.push("/show/" + this.props.match.params.id)
             });

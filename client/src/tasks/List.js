@@ -13,7 +13,7 @@ class List extends Component {
     }
   }
 
-  componentDidMount() {
+  getTasks() {
     axios.get('/api/tasks')
       .then((res) => {
         this.setState({ tasks: res.data })
@@ -21,31 +21,37 @@ class List extends Component {
       .catch((err) => {
         console.log(err);
       })
+
+  }
+
+  componentDidMount() {
+    this.getTasks()
   }
 
   render() {
     return (
       <Grid>
         <Row>
-          <Col xs={12}><h3>Task list</h3></Col>
+          <Col xs={12}><h3>Asana v2</h3></Col>
         </Row>
 
         <Row>
           <Col xs={12}>
             <Button bsStyle="primary" href="/create">
-              <Glyphicon glyph="plus-sign" />Add task
+              <Glyphicon glyph="plus-sign" />Add Task
             </Button>
             <Table>
               <thead>
                 <tr>
                   <th>ID</th>
+                  <th>Status</th>
                   <th>Name</th>
                   <th>Description</th>
                 </tr>
               </thead>
               <tbody>
                 {this.state.tasks.map(task =>
-                  <ListRow {...task} />
+                  <ListRow key={task.id} {...task} />
                 )}
               </tbody>
             </Table>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Button, ButtonToolbar } from 'react-bootstrap'
+import TaskStatusButton from './TaskStatusButton'
 
 class Show extends Component {
 
@@ -29,6 +30,8 @@ class Show extends Component {
     }
 
     render() {
+        console.log("Show state:")
+        console.log(this.state)
         return (
             <div className="container">
                 <div className="panel panel-default">
@@ -43,11 +46,15 @@ class Show extends Component {
                             <dd>{this.state.task.name}</dd>
                             <dt>Description:</dt>
                             <dd>{this.state.task.description}</dd>
+                            <dt>Status</dt>
+                            <dd>{this.state.task.status}</dd>
                         </dl>
                         <ButtonToolbar>
                             <Button bsStyle="success" href={`/edit/${this.state.task.id}`}>Edit</Button>
+                            &nbsp;
                             <Button bsStyle="danger" onClick={this.delete.bind(this, this.state.task.id)}>Delete</Button>
-                            <Button bsStyle="link" href="/">Cancel</Button>
+                            &nbsp;
+                            <Button bsStyle="link" href="/">Close</Button>
                         </ButtonToolbar>
                     </div>
                 </div>
