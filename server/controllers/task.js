@@ -49,3 +49,24 @@ exports.remove = async (req, h) => {
 
     return task.destroy();
 }
+
+/**
+ *  Update status
+ */
+exports.updateStatus = async (req, h) => {
+    console.debug('mark')
+    const { id } = req.params
+    const { status } = req.payload
+
+    if (status in ['New', 'Completed']) {
+        throw Boom.badRequest('Bad status. Allowed New,Complated')
+    }
+
+    const task = await Task.findById(id)
+    if (!task) {
+        throw Boom.notFound('Task not found.')
+    }
+
+    task.status = status
+    return task.save({ fields: ['status'] })
+}
