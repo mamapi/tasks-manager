@@ -13,7 +13,7 @@ describe('Task controller', function () {
         await Task.sync({ force: true })
         await sequelize.sync({ force: true });
         await Task.create({ name: 'Task 1', description: 'Task 1 description', status: 'New' })
-        await Task.create({ name: 'Task 2', description: 'Task 2 description', status: 'Complate' })
+        await Task.create({ name: 'Task 2', description: 'Task 2 description', status: 'Completed' })
     });
 
 
@@ -81,6 +81,24 @@ describe('Task controller', function () {
         expect(result.status).to.equal(payload.status);
         expect(result.createdAt).to.date();
         expect(result.updatedAt).to.date();
+    });
+
+    it('should return error for missing status when creating new', async () => {
+        const options = {
+            method: 'POST',
+            url: '/tasks',
+            payload: {
+                name: 'New task 1',
+                description: 'Task 1 description'
+            }
+        };
+
+        const response = await Server.inject(options);
+
+        const { result } = response;
+        const { payload } = options;
+
+        expect(response.statusCode).to.equal(400);
     });
 
 
