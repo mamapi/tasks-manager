@@ -65,4 +65,5 @@ npm run test
   - [ ] Pagination
   - [ ] Filtering
   - [ ] Front-end validation
+  - [ ] Front-end errors handling
   - [ ] Deploy
