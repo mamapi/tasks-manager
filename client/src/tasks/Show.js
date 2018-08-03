@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { Button, ButtonToolbar } from 'react-bootstrap'
-import TaskStatusButton from './TaskStatusButton'
+import { Button, ButtonToolbar, Row } from 'react-bootstrap'
+import History from './History'
 
 class Show extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            task: {}
+            task: {},
+            history: []
         };
     }
 
-    componentDidMount() {
-        axios.get('/api/tasks/' + this.props.match.params.id)
-            .then(res => {
-                this.setState({ task: res.data });
-                console.log(this.state.task);
-            });
+    async componentDidMount() {
+        const { id } = this.props.match.params
+        const history = await axios.get(`/api/tasks/${id}/history`)
+        const task = await axios.get(`/api/tasks/${id}`)
+        this.setState({ task: task.data, history: history.data });
     }
 
     delete(id) {
@@ -34,30 +33,38 @@ class Show extends Component {
         console.log(this.state)
         return (
             <div className="container">
-                <div className="panel panel-default">
-                    <div className="panel-heading">
-                        <h3 className="panel-title">
-                            {this.state.task.title}
+                <Row>
+                    <div className="panel panel-default">
+                        <div className="panel-heading">
+                            <h3 className="panel-title">
+                                Task
                         </h3>
+                        </div>
+                        <div className="panel-body">
+                            <dl>
+                                <dt>Name:</dt>
+                                <dd>{this.state.task.name}</dd>
+                                <dt>Description:</dt>
+                                <dd>{this.state.task.description}</dd>
+                                <dt>Status</dt>
+                                <dd>{this.state.task.status}</dd>
+                            </dl>
+                        </div>
                     </div>
-                    <div className="panel-body">
-                        <dl>
-                            <dt>Name:</dt>
-                            <dd>{this.state.task.name}</dd>
-                            <dt>Description:</dt>
-                            <dd>{this.state.task.description}</dd>
-                            <dt>Status</dt>
-                            <dd>{this.state.task.status}</dd>
-                        </dl>
-                        <ButtonToolbar>
-                            <Button bsStyle="success" href={`/edit/${this.state.task.id}`}>Edit</Button>
-                            &nbsp;
+                </Row>
+
+                <History history={this.state.history} />
+
+                <Row>
+                    <ButtonToolbar>
+                        <Button bsStyle="success" href={`/edit/${this.state.task.id}`}>Edit</Button>
+                        &nbsp;
                             <Button bsStyle="danger" onClick={this.delete.bind(this, this.state.task.id)}>Delete</Button>
-                            &nbsp;
+                        &nbsp;
                             <Button bsStyle="link" href="/">Close</Button>
-                        </ButtonToolbar>
-                    </div>
-                </div>
+                    </ButtonToolbar>
+                </Row>
+
             </div>
         );
     }
