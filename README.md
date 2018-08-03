@@ -53,3 +53,16 @@ npm run test
 * **PUT** - change task status by given id
 
   * [.../tasks/{id}/status]() - new status sent inside body request
+
+  ## To Do
+  - [x] RESTful using Hapi
+  - [x] CRUD on task list
+  - [x] ORM Sequelize
+  - [x] UI using React
+  - [x] History table 
+  - [x] Transaction handle
+  - [ ] Multi-language capability
+  - [ ] Pagination
+  - [ ] Filtering
+  - [ ] Front-end validation
+  - [ ] Deploy
