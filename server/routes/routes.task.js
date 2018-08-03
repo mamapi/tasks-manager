@@ -23,6 +23,18 @@ exports.registerRoutes = (server) => {
             }
         },
         {
+            method: 'GET',
+            path: '/tasks/{id}/history',
+            handler: TaskController.getHistory,
+            options: {
+                validate: {
+                    params: {
+                        id: Joi.number().integer().min(1).required()
+                    }
+                }
+            }
+        },
+        {
             method: 'POST',
             path: '/tasks',
             handler: TaskController.create,
@@ -68,7 +80,7 @@ exports.registerRoutes = (server) => {
                     }
                 }
             }
-        },        
+        },
     ])
 };
 
