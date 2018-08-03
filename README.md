@@ -35,6 +35,8 @@ npm run test
   * [.../tasks]() - list all available tasks 
 
   * [.../tasks/{id}]() - get task by given id
+  
+  * [.../tasks/{id}/history]() - get task history by given id
 
 * **POST** - add new one
 
