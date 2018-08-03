@@ -32,7 +32,7 @@ class List extends Component {
     return (
       <Grid>
         <Row>
-          <Col xs={12}><h3>Asana v2</h3></Col>
+          <Col xs={12}><h3>Task List</h3></Col>
         </Row>
 
         <Row>
@@ -43,10 +43,8 @@ class List extends Component {
             <Table>
               <thead>
                 <tr>
-                  <th>ID</th>
                   <th>Status</th>
                   <th>Name</th>
-                  <th>Description</th>
                 </tr>
               </thead>
               <tbody>
