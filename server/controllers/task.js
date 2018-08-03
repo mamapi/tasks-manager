@@ -16,6 +16,12 @@ exports.get = (req, h) => {
 }
 
 /**
+ * Get task history by task ID
+ */
+exports.getHistory = (req, h) => {
+    return History.findAll({ where: { taskId: req.params.id } })
+}
+/**
  * Create a task
  */
 exports.create = async (req, h) => {
