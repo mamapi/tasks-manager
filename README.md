@@ -2,6 +2,8 @@
 
 Basic example of tasks manager application, which uses React and Hapi, Sequelize backend ruuning on top Node.js
 
+![alt text](https://raw.githubusercontent.com/mamapi/tasks-manager/master/screens/list.png)
+
 ## Installation Guide
 
 Enter the following commands in the terminal
