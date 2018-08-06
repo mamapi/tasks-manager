@@ -47,7 +47,7 @@ class Show extends Component {
                                 <dt>Description:</dt>
                                 <dd>{this.state.task.description}</dd>
                                 <dt>Status</dt>
-                                <dd>{this.state.task.status}</dd>
+                                <dd>{this.state.task.statusLocal}</dd>
                             </dl>
                         </div>
                     </div>
