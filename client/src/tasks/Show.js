@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Container, Button, ButtonToolbar } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 import History from './History'
 
 class Show extends Component {
@@ -30,7 +30,7 @@ class Show extends Component {
 
     render() {
         return (
-            <Container>
+            <div>
                 <h1>Task</h1>
                 <dl>
                     <dt>Name:</dt>
@@ -51,7 +51,7 @@ class Show extends Component {
                     <Button href="/tasks">Close</Button>
                 </Button.Group>
 
-            </Container>
+            </div>
         );
     }
 }

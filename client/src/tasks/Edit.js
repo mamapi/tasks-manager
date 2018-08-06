@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Container, Form, Button } from 'semantic-ui-react'
+import { Form, Button } from 'semantic-ui-react'
 
 class Edit extends Component {
 
@@ -38,7 +38,7 @@ class Edit extends Component {
     render() {
         const { name, description } = this.state.task
         return (
-            <Container>
+            <div>
                 <Form onSubmit={this.onSubmit}>
                     <h2>Edit Task</h2>
                     <Form.Input
@@ -55,7 +55,7 @@ class Edit extends Component {
                         <Button positive>Save</Button>
                     </Button.Group>
                 </Form>
-            </Container>
+            </div>
         );
     }
 }

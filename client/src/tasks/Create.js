@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Container,Form, Button } from 'semantic-ui-react'
+import { Form, Button } from 'semantic-ui-react'
 
 class Create extends Component {
 
@@ -25,14 +25,13 @@ class Create extends Component {
 
         axios.post('/api/tasks', { name, description, status })
             .then((result) => {
-                this.props.history.push("/")
+                this.props.history.push("/tasks")
             });
     }
 
     render() {
         const { name, description } = this.state;
         return (
-            <Container>
                 <Form onSubmit={this.onSubmit}>
                     <h2>Add Task</h2>
                     <Form.Input
@@ -44,12 +43,11 @@ class Create extends Component {
                         value={description} onChange={this.onChange}
                     />
                     <Button.Group>
-                        <Button href={'/show/tasks'}>Cancel</Button>
+                        <Button href={'/tasks'}>Cancel</Button>
                         <Button.Or />
                         <Button positive>Save</Button>
                     </Button.Group>
                 </Form>
-            </Container>
         );
     }
 }
