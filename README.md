@@ -61,7 +61,7 @@ npm run test
   - [x] UI using React
   - [x] History table 
   - [x] Transaction handle
-  - [ ] Multi-language capability
+  - [x] Multi-language capability
   - [ ] Pagination
   - [ ] Filtering
   - [ ] Front-end validation
