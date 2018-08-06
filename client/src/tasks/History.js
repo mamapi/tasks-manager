@@ -14,7 +14,7 @@ const History = (props) => {
                 </thead>
                 <tbody>
                     {props.history.map((item) =>
-                        <tr>
+                        <tr key={item.id}>
                             <td>{Moment(item.createdAt).fromNow()}</td>
                             <td>{item.description}</td>
                         </tr>
