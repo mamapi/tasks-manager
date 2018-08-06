@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING(100),
     description: DataTypes.STRING,
     status: DataTypes.STRING(20),
+    statusLocal: DataTypes.VIRTUAL,
   }, {});
   Task.associate = function (models) {
     // associations can be defined here
