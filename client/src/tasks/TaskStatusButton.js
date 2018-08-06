@@ -47,7 +47,6 @@ class TaskStatusButton extends Component {
             button =
                 <Button
                     basic
-                    content='Standard'
                     size="small"
                     onClick={(e) => this.updateStatus(e, this.props.id, 'Completed')}>
                     {this.state.statusLocal}
