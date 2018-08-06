@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, Dropdown, Button } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 import { LocaleContext } from './LocaleContext';
 
 export default () => {

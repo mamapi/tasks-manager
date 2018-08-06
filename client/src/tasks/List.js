@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import ListRow from './ListRow'
-import { Container, Table, Button, Icon } from 'semantic-ui-react'
+import { Table, Button, Icon } from 'semantic-ui-react'
 
 class List extends Component {
   constructor(props, context) {

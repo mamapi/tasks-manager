@@ -1,18 +1,7 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
-import {
-    Container,
-    Divider,
-    Dropdown,
-    Grid,
-    Header,
-    Image,
-    List,
-    Menu,
-    Segment,
-    Input
-} from 'semantic-ui-react'
+import { Container, Menu, } from 'semantic-ui-react'
 
 import ToggleLocale from './ToggleLocale'
 
