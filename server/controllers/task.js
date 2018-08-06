@@ -4,15 +4,22 @@ const { sequelize, Task, History } = require('../models');
 /**
  * List tasks
  */
-exports.list = (req, h) => {
-    return Task.findAll()
+exports.list = async (req, h) => {
+    const tasks = await Task.findAll()
+    tasks.forEach((task)=>{
+        task.statusLocal = req.i18n.__(task.status)
+        return task
+    })
+    return tasks
 }
 
 /**
  * Get task by ID
  */
-exports.get = (req, h) => {
-    return Task.findById(req.params.id)
+exports.get = async (req, h) => {
+    const task = await Task.findById(req.params.id)
+    task.statusLocal = req.i18n.__(task.status)
+    return task
 }
 
 /**
@@ -143,6 +150,7 @@ exports.updateStatus = async (req, h) => {
         }, { transaction })
 
         await transaction.commit()
+        task.statusLocal = req.i18n.__(task.status)
         return task
     } catch {
         await transaction.rollback()
