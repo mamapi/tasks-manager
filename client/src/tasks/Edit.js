@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Button, ButtonToolbar, FormGroup, ControlLabel } from 'react-bootstrap'
+import { Container, Form, Button } from 'semantic-ui-react'
 
 class Edit extends Component {
 
@@ -36,49 +36,26 @@ class Edit extends Component {
     }
 
     render() {
+        const { name, description } = this.state.task
         return (
-            <div className="container">
-                <div className="panel panel-default">
-                    <div className="panel-heading">
-                        <h3 className="panel-title">
-                            Edit task
-                        </h3>
-                    </div>
-                    <div className="panel-body">
-                        <form onSubmit={this.onSubmit}>
-
-                            <FormGroup>
-                                <ControlLabel>Name</ControlLabel>
-                                <input type="text"
-                                    className="form-control"
-                                    name="name"
-                                    value={this.state.task.name}
-                                    onChange={this.onChange}
-                                    placeholder="Enter task name" />
-
-                            </FormGroup>
-
-                            <FormGroup>
-                                <ControlLabel>Description</ControlLabel>
-                                <textarea
-                                    className="form-control"
-                                    name="description"
-                                    value={this.state.task.description}
-                                    onChange={this.onChange}
-                                    placeholder="Enter description"
-                                    cols="80" rows="3"
-                                />
-                            </FormGroup>
-
-                            <ButtonToolbar>
-                                <Button bsStyle="primary" type="submit">Submit</Button>
-                                <Button bsStyle="link" href={`/show/${this.state.task.id}`}>Cancel</Button>
-                            </ButtonToolbar>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
+            <Container>
+                <Form onSubmit={this.onSubmit}>
+                    <h2>Edit Task</h2>
+                    <Form.Input
+                        label='Name' name='name' control='input' placeholder='Write Task Name'
+                        value={name} onChange={this.onChange}
+                    />
+                    <Form.Field
+                        label='Description' name='description' control='textarea' rows='3' placeholder='Write description'
+                        value={description} onChange={this.onChange}
+                    />
+                    <Button.Group>
+                        <Button href={`/show/${this.state.task.id}`}>Cancel</Button>
+                        <Button.Or />
+                        <Button positive>Save</Button>
+                    </Button.Group>
+                </Form>
+            </Container>
         );
     }
 }

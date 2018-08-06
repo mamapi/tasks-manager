@@ -1,27 +1,26 @@
 import React from 'react'
 import Moment from 'moment'
-import { Row, Table } from 'react-bootstrap'
+import { Table } from 'semantic-ui-react'
 
 const History = (props) => {
     return (
-        <Row>
-            <Table striped hover>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {props.history.map((item) =>
-                        <tr key={item.id}>
-                            <td>{Moment(item.createdAt).fromNow()}</td>
-                            <td>{item.description}</td>
-                        </tr>
-                    )}
-                </tbody>
-            </Table>
-        </Row>
+        <Table compact='very'>
+            <Table.Header>
+                <Table.Row>
+                    <Table.HeaderCell>Date</Table.HeaderCell>
+                    <Table.HeaderCell>Description</Table.HeaderCell>
+                </Table.Row>
+            </Table.Header>
+
+            <Table.Body>
+                {props.history.map((item) =>
+                    <Table.Row key={item.id}>
+                        <Table.Cell>{Moment(item.createdAt).fromNow()}</Table.Cell>
+                        <Table.Cell>{item.description}</Table.Cell>
+                    </Table.Row>
+                )}
+            </Table.Body>
+        </Table>
     )
 }
 

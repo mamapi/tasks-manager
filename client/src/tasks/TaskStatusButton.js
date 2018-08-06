@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Button } from 'react-bootstrap'
+import { Button } from 'semantic-ui-react'
 
 class TaskStatusButton extends Component {
     constructor(props) {
@@ -13,23 +13,23 @@ class TaskStatusButton extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(this.props !== nextProps){
-            this.setState({ 
+        if (this.props !== nextProps) {
+            this.setState({
                 status: nextProps.status,
                 statusLocal: nextProps.statusLocal,
-             })
+            })
         }
-      }
+    }
 
     updateStatus(e, id, status) {
         e.preventDefault();
 
         axios.put(`/api/tasks/${id}/status`, { status })
             .then((result) => {
-                this.setState({ 
+                this.setState({
                     status: result.data.status,
                     statusLocal: result.data.statusLocal,
-                 })
+                })
             }).catch((error) => console.error(error))
     }
 
@@ -38,16 +38,18 @@ class TaskStatusButton extends Component {
         if (this.state.status === "Completed") {
             button =
                 <Button
-                    bsStyle="success"
-                    onClick={(e) => this.updateStatus(e, this.props.id, 'New')}
-                    bsSize="small">
+                    size="small"
+                    color='green'
+                    onClick={(e) => this.updateStatus(e, this.props.id, 'New')}>
                     {this.state.statusLocal}
                 </Button>
         } else {
             button =
                 <Button
-                    onClick={(e) => this.updateStatus(e, this.props.id, 'Completed')}
-                    bsSize="small">
+                    basic
+                    content='Standard'
+                    size="small"
+                    onClick={(e) => this.updateStatus(e, this.props.id, 'Completed')}>
                     {this.state.statusLocal}
                 </Button>
         }

@@ -6,10 +6,10 @@ import TaskStatusButton from './TaskStatusButton'
 const Task = (props) => {
     return (
         <tr>
+            <td><Link to={`/show/${props.id}`}>{props.name}</Link></td>
             <td>
                 <TaskStatusButton {...props} />
             </td>
-            <td><Link to={`/show/${props.id}`}>{props.name}</Link></td>
         </tr>
     )
 }

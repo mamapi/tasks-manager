@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Button, ButtonToolbar, Row } from 'react-bootstrap'
+import { Container, Button, ButtonToolbar } from 'semantic-ui-react'
 import History from './History'
 
 class Show extends Component {
@@ -24,48 +24,34 @@ class Show extends Component {
         console.log(id);
         axios.delete('/api/tasks/' + id)
             .then((result) => {
-                this.props.history.push("/")
+                this.props.history.push("/tasks")
             });
     }
 
     render() {
-        console.log("Show state:")
-        console.log(this.state)
         return (
-            <div className="container">
-                <Row>
-                    <div className="panel panel-default">
-                        <div className="panel-heading">
-                            <h3 className="panel-title">
-                                Task
-                        </h3>
-                        </div>
-                        <div className="panel-body">
-                            <dl>
-                                <dt>Name:</dt>
-                                <dd>{this.state.task.name}</dd>
-                                <dt>Description:</dt>
-                                <dd>{this.state.task.description}</dd>
-                                <dt>Status</dt>
-                                <dd>{this.state.task.statusLocal}</dd>
-                            </dl>
-                        </div>
-                    </div>
-                </Row>
+            <Container>
+                <h1>Task</h1>
+                <dl>
+                    <dt>Name:</dt>
+                    <dd>{this.state.task.name}</dd>
+                    <dt>Description:</dt>
+                    <dd>{this.state.task.description}</dd>
+                    <dt>Status</dt>
+                    <dd>{this.state.task.statusLocal}</dd>
+                </dl>
 
                 <History history={this.state.history} />
 
-                <Row>
-                    <ButtonToolbar>
-                        <Button bsStyle="success" href={`/edit/${this.state.task.id}`}>Edit</Button>
-                        &nbsp;
-                            <Button bsStyle="danger" onClick={this.delete.bind(this, this.state.task.id)}>Delete</Button>
-                        &nbsp;
-                            <Button bsStyle="link" href="/">Close</Button>
-                    </ButtonToolbar>
-                </Row>
+                <Button.Group>
+                    <Button color="green" href={`/edit/${this.state.task.id}`}>Edit</Button>
+                    <Button.Or />
+                    <Button color="red" onClick={this.delete.bind(this, this.state.task.id)}>Delete</Button>
+                    <Button.Or />
+                    <Button href="/tasks">Close</Button>
+                </Button.Group>
 
-            </div>
+            </Container>
         );
     }
 }
