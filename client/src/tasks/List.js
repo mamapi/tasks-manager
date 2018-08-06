@@ -47,8 +47,8 @@ class List extends Component {
 
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Name</Table.HeaderCell>
               <Table.HeaderCell>Status</Table.HeaderCell>
+              <Table.HeaderCell>Name</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 

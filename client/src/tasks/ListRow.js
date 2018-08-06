@@ -1,16 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { Table } from 'semantic-ui-react'
 import TaskStatusButton from './TaskStatusButton'
 
 
 const Task = (props) => {
     return (
-        <tr>
-            <td><Link to={`/show/${props.id}`}>{props.name}</Link></td>
-            <td>
+        <Table.Row>
+            <Table.Cell>
                 <TaskStatusButton {...props} />
-            </td>
-        </tr>
+            </Table.Cell>
+            <Table.Cell><Link to={`/show/${props.id}`}>{props.name}</Link></Table.Cell>
+        </Table.Row>
     )
 }
 
