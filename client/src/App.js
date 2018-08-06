@@ -1,8 +1,7 @@
-import React from 'react'
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import ReactObserver from 'react-event-observer'
 
-import { Link } from 'react-router-dom'
 import {
     Container,
     Divider,
@@ -21,18 +20,37 @@ import Create from './tasks/Create'
 import Edit from './tasks/Edit'
 import Show from './tasks/Show'
 
-const App = () => (
-    <Router>
-        <div>
-            <TopMenu />
-            <Switch>
-                <Route path='/tasks' component={TaskList} />
-                <Route path='/edit/:id' component={Edit} />
-                <Route path='/create' component={Create} />
-                <Route path='/show/:id' component={Show} />
-            </Switch>
-        </div>
-    </Router>
-)
+import LocaleProvider, { LocaleContext } from './LocaleContext'
+import ToggleLocale from './ToggleLocale'
+
+
+class App extends Component {
+    render() {
+        return (
+            <LocaleProvider>
+                <Router>
+                    <div>
+                        <TopMenu />
+
+                        <Container text style={{ marginTop: '1em' }}>
+                            <Switch>
+                                <Route path='/tasks' component={() =>
+                                    <LocaleContext.Consumer>
+                                        {localeVal =>
+                                            <TaskList localeVal={localeVal} />
+                                        }
+                                    </LocaleContext.Consumer>
+                                } />
+                                <Route path='/edit/:id' component={Edit} />
+                                <Route path='/create' component={Create} />
+                                <Route path='/show/:id' component={Show} />
+                            </Switch>
+                        </Container>
+                    </div>
+                </Router>
+            </LocaleProvider>
+        )
+    }
+}
 
 export default App

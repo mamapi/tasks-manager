@@ -1,25 +1,20 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import ListRow from './ListRow'
-import LanguageSwitch from './LanguageSwitch'
-import ReactObserver from 'react-event-observer'
 import { Container, Table, Button, Icon } from 'semantic-ui-react'
 
 class List extends Component {
-  constructor(props) {
+  constructor(props, context) {
     super(props)
-    this.observer = ReactObserver()
-    this.observer.subscribe('lang switched', (lang) => {
-      this.getTasks()
-    })
 
     this.state = {
-      tasks: []
+      tasks: [],
+      locale: props.localeVal.locale
     }
   }
 
   getTasks() {
-    axios.get('/api/tasks')
+    axios.get('/api/tasks', { headers: { language: this.state.locale } })
       .then((res) => {
         this.setState({ tasks: res.data })
       })
@@ -32,10 +27,18 @@ class List extends Component {
     this.getTasks()
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props !== nextProps) {
+      this.setState({ locale: nextProps.localeVal.locale, }, () => {
+        this.getTasks()
+
+      })
+    }
+  }
+
   render() {
     return (
-      <Container text style={{ marginTop: '1em' }}>
-        
+      <div>
         <Button primary icon href="/create">
           <Icon name='add' /> Add Task
         </Button>
@@ -56,22 +59,8 @@ class List extends Component {
           </Table.Body>
 
         </Table>
-
-        {/* <Row>
-          <Col xs={12}>
-            <LanguageSwitch observer={this.observer} />
-          </Col>
-        </Row> */}
-        {/* <Row>
-          <Col xs={12}>
-            <Button bsStyle="primary" href="/create">
-              <Glyphicon glyph="plus-sign" />Add Task
-            </Button>
-          </Col>
-        </Row> */}
-
-      </Container>
-    );
+      </div>
+    )
   }
 
 }
