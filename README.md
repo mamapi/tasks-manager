@@ -1,6 +1,6 @@
 # RESTful Tasks Manager Node.js
 
-Basic example of tasks manager application, which uses React and Hapi, Sequelize backend ruuning on top Node.js
+Basic example of tasks manager application, which uses React and Hapi, Sequelize, Mysql backend running on top Node.js
 
 ![alt text](https://raw.githubusercontent.com/mamapi/tasks-manager/master/screens/list.png)
 
@@ -11,19 +11,30 @@ Enter the following commands in the terminal
 ```bash
 git clone https://github.com/mamapi/tasks-manager.git
 cd tasks-manager
-npm install
-
-cd client
-npm install
+yarn install
 ```
 
 ## Develop Commands
 ```bash
-# run server and client
-npm run dev
+# create development database
+cd server/
+./node_modules/.bin/sequelize db:create
+
+# create test database
+cd server/
+NODE_ENV=test ./node_modules/.bin/sequelize db:create
+
+# for working on the server
+(cd server && yarn start)
+
+# for working on the client
+(cd client && yarn start)
+
+# for working on both server and client
+yarn start
 
 # run api tests
-npm run test
+(cd server && yarn test)
 ```
 
 ## REST resource
