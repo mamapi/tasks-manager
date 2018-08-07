@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.addColumn('tasks', 'status',
+    return queryInterface.addColumn('Tasks', 'status',
       {
         type: Sequelize.STRING(20),
         allowNull: false
@@ -11,6 +11,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return  queryInterface.removeColumn('users', 'email')
+    return  queryInterface.removeColumn('Tasks', 'status')
   }
 };
