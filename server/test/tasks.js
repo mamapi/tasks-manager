@@ -3,7 +3,7 @@ const Hapi = require('hapi');
 const { expect } = require('code')
 const { it, describe, before } = exports.lab = require('lab').script()
 
-const { Task, sequelize } = require('../server/models');
+const { Task, sequelize } = require('../db/models');
 
 const Server = require('../server');
 
@@ -16,21 +16,21 @@ describe('Task controller', function () {
     });
 
 
-    it('should return HTTP 200 for /tasks', async () => {
+    it('should return HTTP 200 for /api/tasks', async () => {
 
         const response = await Server.inject({
             method: 'GET',
-            url: '/tasks'
+            url: '/api/tasks'
         });
 
         expect(response.statusCode).to.equal(200);
     });
 
-    it('should return HTTP 200 for /tasks/1', async () => {
+    it('should return HTTP 200 for /api/tasks/1', async () => {
 
         const response = await Server.inject({
             method: 'GET',
-            url: '/tasks/1'
+            url: '/api/tasks/1'
         });
 
         expect(response.statusCode).to.equal(200);
@@ -40,7 +40,7 @@ describe('Task controller', function () {
 
         const response = await Server.inject({
             method: 'DELETE',
-            url: '/tasks/100'
+            url: '/api/tasks/100'
         });
 
         expect(response.statusCode).to.equal(404);
@@ -51,7 +51,7 @@ describe('Task controller', function () {
 
         const response = await Server.inject({
             method: 'GET',
-            url: '/tasks/INVLAID_ID_FORMAT'
+            url: '/api/tasks/INVLAID_ID_FORMAT'
         });
 
         expect(response.statusCode).to.equal(400);
@@ -60,7 +60,7 @@ describe('Task controller', function () {
     it('should return valid task when creating new', async () => {
         const options = {
             method: 'POST',
-            url: '/tasks',
+            url: '/api/tasks',
             payload: {
                 name: 'New task 1',
                 description: 'Task 1 description',
@@ -82,10 +82,32 @@ describe('Task controller', function () {
         expect(result.updatedAt).to.date();
     });
 
+    it('should return valid task for empty descriptionwhen creating new', async () => {
+        const options = {
+            method: 'POST',
+            url: '/api/tasks',
+            payload: {
+                name: 'New task 1',
+                status: 'New',
+                description: ''
+            }
+        };
+
+        const response = await Server.inject(options)
+
+        const { result } = response
+        const { payload } = options
+
+        expect(response.statusCode).to.equal(200)
+        expect(result.name).to.equal(payload.name);
+        expect(result.description).to.equal(payload.description);
+        expect(result.status).to.equal(payload.status);
+    });
+
     it('should return error for missing status when creating new', async () => {
         const options = {
             method: 'POST',
-            url: '/tasks',
+            url: '/api/tasks',
             payload: {
                 name: 'New task 1',
                 description: 'Task 1 description'
@@ -105,7 +127,7 @@ describe('Task controller', function () {
 
         const response = await Server.inject({
             method: 'DELETE',
-            url: '/tasks/1'
+            url: '/api/tasks/1'
         });
 
         expect(response.statusCode).to.equal(204);
@@ -115,7 +137,7 @@ describe('Task controller', function () {
 
         const response = await Server.inject({
             method: 'DELETE',
-            url: '/tasks/999'
+            url: '/api/tasks/999'
         });
 
         expect(response.statusCode).to.equal(404);
@@ -125,7 +147,7 @@ describe('Task controller', function () {
 
         const response = await Server.inject({
             method: 'DELETE',
-            url: '/tasks/INVALID_ID_FORMAT'
+            url: '/api/tasks/INVALID_ID_FORMAT'
         });
 
         expect(response.statusCode).to.equal(400);
