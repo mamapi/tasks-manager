@@ -10,7 +10,6 @@ const Server = require('../server');
 describe('Task controller', function () {
 
     before(async () => {
-        await Task.sync({ force: true })
         await sequelize.sync({ force: true });
         await Task.create({ name: 'Task 1', description: 'Task 1 description', status: 'New' })
         await Task.create({ name: 'Task 2', description: 'Task 2 description', status: 'Completed' })
@@ -102,14 +101,14 @@ describe('Task controller', function () {
     });
 
 
-    it('should return HTTP 200 for delete existing task', async () => {
+    it('should return HTTP 204 for delete existing task', async () => {
 
         const response = await Server.inject({
             method: 'DELETE',
             url: '/tasks/1'
         });
 
-        expect(response.statusCode).to.equal(200);
+        expect(response.statusCode).to.equal(204);
     });
 
     it('should return HTTP 400 for invalid id when delete task', async () => {
