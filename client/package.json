@@ -9,12 +9,11 @@
     "react-dom": "^16.4.1",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
+    "react-scripts": "^1.1.4",
     "semantic-ui-css": "^2.3.3",
     "semantic-ui-react": "^0.82.1"
   },
-  "devDependencies": {
-    "react-scripts": "1.1.4"
-  },
+  "devDependencies": {},
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
