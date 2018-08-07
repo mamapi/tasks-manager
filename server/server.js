@@ -4,7 +4,7 @@ const Hapi = require('hapi');
 
 const taskRoutes = require('./routes/routes.task')
 const { sequelize } = require('./models');
-
+const env = process.env.NODE_ENV || 'development';
 
 const server = new Hapi.Server({
     host: 'localhost',
@@ -25,13 +25,30 @@ const registerPlugins = async () => {
             defaultLocale: 'en',
         }
     })
+    await server.register(require('inert'))
 }
 
 const initServer = async () => {
     await sequelize.sync()
     await registerPlugins()
     await registerRoutes()
+
+    if (env === 'production') {
+        server.route({
+            method: 'GET',
+            path: '/{param*}',
+            handler: {
+                directory: {
+                    path: '../client/build',
+                    redirectToSlash: true,
+                    index: true,
+                }
+            }
+        })
+    }
+
     await server.start()
+
     return server
 }
 
