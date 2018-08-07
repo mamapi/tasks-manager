@@ -2,8 +2,8 @@
 
 const Hapi = require('hapi');
 
-const taskRoutes = require('./server/routes/routes.task')
-const { sequelize } = require('./server/models');
+const taskRoutes = require('./routes/routes.task')
+const { sequelize } = require('./models');
 
 
 const server = new Hapi.Server({
@@ -20,7 +20,7 @@ const registerPlugins = async () => {
         plugin: require('hapi-i18n'),
         options: {
             locales: ['pl', 'en', 'de'],
-            directory: __dirname + '/server//locales',
+            directory: __dirname + '/locales',
             languageHeaderField: 'language',
             defaultLocale: 'en',
         }

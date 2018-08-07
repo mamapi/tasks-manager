@@ -152,7 +152,7 @@ exports.updateStatus = async (req, h) => {
         await transaction.commit()
         task.statusLocal = req.i18n.__(task.status)
         return task
-    } catch {
+    } catch(e) {
         await transaction.rollback()
         throw Boom.internal()
     }

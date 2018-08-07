@@ -1,29 +1,27 @@
 {
-  "name": "task-manager",
+  "name": "tasks-manager",
   "version": "1.0.0",
-  "description": "",
+  "description": "Basic example of tasks manager application, which uses React and Hapi, Sequelize backend ruuning on top Node.js",
   "main": "index.js",
-  "scripts": {
-    "client": "cd client && npm start",
-    "server": "node server.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\" ",
-    "test": "lab -t 33",
-    "test-cov-html": "lab -r html -o coverage.html"
+  "directories": {
+    "test": "test"
   },
-  "author": "Grzegorz Gorczynski",
-  "license": "ISC",
-  "dependencies": {
-    "boom": "^7.2.0",
-    "hapi": "^17.5.2",
-    "hapi-i18n": "^2.0.0",
-    "joi": "^13.4.0",
-    "mysql2": "^1.5.3",
-    "sequelize": "^4.38.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "code": "^5.2.0",
-    "concurrently": "^3.6.1",
-    "lab": "^15.5.0",
-    "sequelize-cli": "^4.0.0"
-  }
+    "concurrently": "^3.6.1"
+  },
+  "scripts": {
+    "install": "(cd client && yarn) && (cd server && yarn)",
+    "start": "concurrently \"cd client && yarn start\" \"cd server && yarn start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mamapi/tasks-manager.git"
+  },
+  "author": "Gregory Gorczynski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mamapi/tasks-manager/issues"
+  },
+  "homepage": "https://github.com/mamapi/tasks-manager#readme"
 }
