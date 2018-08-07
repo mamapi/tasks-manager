@@ -18,11 +18,11 @@
     "inert": "^5.1.0",
     "joi": "^13.4.0",
     "mysql2": "^1.5.3",
-    "sequelize": "^4.38.0"
+    "sequelize": "^4.38.0",
+    "cross-env": "^5.2.0"
   },
   "devDependencies": {
     "code": "^5.2.0",
-    "cross-env": "^5.2.0",
     "lab": "^15.5.0",
     "nodemon": "^1.18.3",
     "sequelize-cli": "^4.0.0"
