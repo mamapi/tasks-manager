@@ -3,7 +3,7 @@
 const Hapi = require('hapi');
 
 const taskRoutes = require('./routes/routes.task')
-const { sequelize } = require('./models');
+const { sequelize } = require('./db/models');
 const env = process.env.NODE_ENV || 'development';
 
 const server = new Hapi.Server({

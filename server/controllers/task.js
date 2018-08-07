@@ -1,5 +1,5 @@
-const Boom = require('boom');
-const { sequelize, Task, History } = require('../models');
+const Boom = require('boom')
+const { sequelize, Task, History } = require('../db/models')
 
 /**
  * List tasks
