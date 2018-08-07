@@ -7,12 +7,12 @@ exports.registerRoutes = (server) => {
     return server.route([
         {
             method: 'GET',
-            path: '/tasks',
+            path: '/api/tasks',
             handler: TaskController.list,
         },
         {
             method: 'GET',
-            path: '/tasks/{id}',
+            path: '/api/tasks/{id}',
             handler: TaskController.get,
             options: {
                 validate: {
@@ -24,7 +24,7 @@ exports.registerRoutes = (server) => {
         },
         {
             method: 'GET',
-            path: '/tasks/{id}/history',
+            path: '/api/tasks/{id}/history',
             handler: TaskController.getHistory,
             options: {
                 validate: {
@@ -36,7 +36,7 @@ exports.registerRoutes = (server) => {
         },
         {
             method: 'POST',
-            path: '/tasks',
+            path: '/api/tasks',
             handler: TaskController.create,
             options: {
                 validate: {
@@ -46,7 +46,7 @@ exports.registerRoutes = (server) => {
         },
         {
             method: 'PUT',
-            path: '/tasks/{id}',
+            path: '/api/tasks/{id}',
             handler: TaskController.update,
             options: {
                 validate: {
@@ -59,7 +59,7 @@ exports.registerRoutes = (server) => {
         },
         {
             method: 'DELETE',
-            path: '/tasks/{id}',
+            path: '/api/tasks/{id}',
             handler: TaskController.remove,
             options: {
                 validate: {
@@ -71,7 +71,7 @@ exports.registerRoutes = (server) => {
         },
         {
             method: 'PUT',
-            path: '/tasks/{id}/status',
+            path: '/api/tasks/{id}/status',
             handler: TaskController.updateStatus,
             options: {
                 validate: {
