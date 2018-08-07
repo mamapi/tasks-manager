@@ -1,8 +1,15 @@
 # RESTful Tasks Manager Node.js
 
-Basic example of tasks manager application, which uses React and Hapi, Sequelize, Mysql backend running on top Node.js
+Basic example of tasks manager application, which uses React and Hapi, Sequelize, MySQL backend running on top Node.js
+
+Demo: [https://asana-v2.herokuapp.com/](https://asana-v2.herokuapp.com/)
 
 ![alt text](https://raw.githubusercontent.com/mamapi/tasks-manager/master/screens/list.png)
+
+## Requirements
+  * [Node.js](https://nodejs.org/) v8.11 or newer
+  * [Yarn](https://yarnpkg.com/) package 
+
 
 ## Installation Guide
 
@@ -13,9 +20,36 @@ git clone https://github.com/mamapi/tasks-manager.git
 cd tasks-manager
 yarn install
 ```
+## Development
 
-## Develop Commands
-```bash
+### MySQL config
+
+``` bash
+# config locate in: server/config/database.js
+module.exports = {
+  development: {
+    username: 'root',
+    password: null,
+    database: 'tasks_dev',
+    host: '127.0.0.1',
+    dialect: 'mysql'
+  },
+  test: {
+    username: 'root',
+    password: null,
+    database: 'tasks_test',
+    host: '127.0.0.1',
+    dialect: 'mysql'
+  },
+  production: {
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOSTNAME,
+    dialect: 'mysql',
+  }
+}
+
 # create development database
 cd server/
 ./node_modules/.bin/sequelize db:create
@@ -24,6 +58,14 @@ cd server/
 cd server/
 NODE_ENV=test ./node_modules/.bin/sequelize db:create
 
+# run migrations
+cd server/
+NODE_ENV=test ./node_modules/.bin/sequelize db:migrate
+```
+
+### Develop Commands
+
+```bash
 # for working on the server
 (cd server && yarn start)
 
@@ -77,4 +119,4 @@ yarn start
   - [ ] Filtering
   - [ ] Front-end validation
   - [ ] Front-end errors handling
-  - [ ] Deploy
+  - [x] Heroku deploy
