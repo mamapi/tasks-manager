@@ -16,7 +16,6 @@ class Edit extends Component {
         axios.get('/api/tasks/' + this.props.match.params.id)
             .then(res => {
                 this.setState({ task: res.data });
-                console.log(this.state.task);
             });
     }
 
@@ -37,7 +36,7 @@ class Edit extends Component {
     }
 
     render() {
-        const { name, description } = this.state.task
+        const { name='', description } = this.state.task
         return (
             <div>
                 <Form onSubmit={this.onSubmit}>

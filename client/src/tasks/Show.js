@@ -17,9 +17,10 @@ class Show extends Component {
     async componentDidMount() {
         const { id } = this.props.match.params
         const history = await axios.get(`/api/tasks/${id}/history`)
-        const task = await axios.get(`/api/tasks/${id}`)
+        const task = await axios.get(`/api/tasks/${id}`, { headers: { language: this.props.currentLocale } })
         this.setState({ task: task.data, history: history.data });
     }
+    
 
     delete(id) {
         console.log(id);

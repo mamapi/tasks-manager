@@ -7,16 +7,16 @@ import { LocaleContext } from '../LocaleContext'
 
 const Task = (props) => {
     return (
-        <Table.Row>
-            <Table.Cell>
-                <LocaleContext.Consumer>
-                    {localeVal =>
-                        <TaskStatusButton {...props} localeVal={localeVal} />
-                    }
-                </LocaleContext.Consumer>
-            </Table.Cell>
-            <Table.Cell><Link to={`/show/${props.id}`}>{props.name}</Link></Table.Cell>
-        </Table.Row>
+        <LocaleContext.Consumer>
+            {context =>
+                <Table.Row>
+                    <Table.Cell>
+                        <TaskStatusButton {...props} {...context} />
+                    </Table.Cell>
+                    <Table.Cell><Link to={`/show/${props.id}`}>{props.name}</Link></Table.Cell>
+                </Table.Row>
+            }
+        </LocaleContext.Consumer>
     )
 }
 

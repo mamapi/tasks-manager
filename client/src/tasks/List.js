@@ -5,22 +5,21 @@ import ListRow from './ListRow'
 import { Table, Button, Icon } from 'semantic-ui-react'
 
 class List extends Component {
-  constructor(props, context) {
+  constructor(props) {
     super(props)
 
     this.state = {
-      tasks: [],
-      locale: props.localeVal.locale
+      tasks: []
     }
   }
 
   getTasks() {
-    axios.get('/api/tasks', { headers: { language: this.state.locale } })
+    axios.get('/api/tasks', { headers: { language: this.props.currentLocale } })
       .then((res) => {
         this.setState({ tasks: res.data })
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       })
   }
 
@@ -30,9 +29,8 @@ class List extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props !== nextProps) {
-      this.setState({ locale: nextProps.localeVal.locale, }, () => {
+      this.setState({ currentLocale: nextProps.currentLocale, }, () => {
         this.getTasks()
-
       })
     }
   }

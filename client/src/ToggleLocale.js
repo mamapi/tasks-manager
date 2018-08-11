@@ -2,24 +2,24 @@ import React from 'react';
 import { Menu } from 'semantic-ui-react'
 import { LocaleContext } from './LocaleContext';
 
-export default () => {
-    return (
-        <LocaleContext.Consumer>
-            {localeVal => (
-                <Menu.Menu position='right'>
+const ToggleLocale = () => (
+    <LocaleContext.Consumer>
+        {(context) => (
+            <Menu.Menu position='right'>
+                <MenuItem locale='en' {...context} />
+                <MenuItem locale='pl' {...context} />
+            </Menu.Menu>
+        )}
+    </LocaleContext.Consumer>
+)
 
-                    <Menu.Item disabled={localeVal.locale === 'en'} onClick={(e) => {
-                        e.preventDefault()
-                        localeVal.changeLocale('en')
-                    }}>EN</Menu.Item>
-                    <Menu.Item disabled={localeVal.locale === 'pl'} onClick={(e) => {
-                        e.preventDefault()
-                        localeVal.changeLocale('pl')
-                    }}>PL</Menu.Item>
+const MenuItem = ({ locale, currentLocale, changeLocale }) => (
+    
+    <Menu.Item disabled={currentLocale === locale} onClick={(e) => {
+        e.preventDefault()
+        changeLocale(locale)
+    }}>{locale.toUpperCase()}</Menu.Item>
 
-                </Menu.Menu>
+)
 
-            )}
-        </LocaleContext.Consumer>
-    );
-}
+export default ToggleLocale

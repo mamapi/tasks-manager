@@ -9,7 +9,6 @@ class TaskStatusButton extends Component {
         this.state = {
             status: props.status,
             statusLocal: props.statusLocal,
-            locale: props.localeVal.locale
         }
     }
 
@@ -18,7 +17,6 @@ class TaskStatusButton extends Component {
             this.setState({
                 status: nextProps.status,
                 statusLocal: nextProps.statusLocal,
-                locale: nextProps.localeVal.locale,
             })
         }
     }
@@ -26,7 +24,7 @@ class TaskStatusButton extends Component {
     updateStatus(e, id, status) {
         e.preventDefault();
 
-        axios.put(`/api/tasks/${id}/status`, { status }, { headers: { language: this.state.locale } })
+        axios.put(`/api/tasks/${id}/status`, { status }, { headers: { language: this.props.currentLocale } })
             .then((result) => {
                 this.setState({
                     status: result.data.status,
