@@ -7,11 +7,11 @@ class LocaleProvider extends React.Component {
     super(props);
 
     this.changeLocale = (locale) => {
-      this.setState({ locale: locale })
+      this.setState({ currentLocale: locale })
     }
 
     this.state = {
-      locale: 'pl',
+      currentLocale: 'pl',
       changeLocale: this.changeLocale
     };
   }
