@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Form, Button } from 'semantic-ui-react'
 
@@ -50,7 +51,7 @@ class Edit extends Component {
                         value={description} onChange={this.onChange}
                     />
                     <Button.Group>
-                        <Button href={`/show/${this.state.task.id}`}>Cancel</Button>
+                        <Button as={Link} to={`/show/${this.state.task.id}`}>Cancel</Button>
                         <Button.Or />
                         <Button positive>Save</Button>
                     </Button.Group>

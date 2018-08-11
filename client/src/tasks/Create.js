@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import axios from 'axios';
 import { Form, Button } from 'semantic-ui-react'
 
@@ -43,7 +44,7 @@ class Create extends Component {
                     value={description} onChange={this.onChange}
                 />
                 <Button.Group>
-                    <Button href={'/tasks'}>Cancel</Button>
+                    <Button as={Link} to='/tasks'>Cancel</Button>
                     <Button.Or />
                     <Button positive>Save</Button>
                 </Button.Group>

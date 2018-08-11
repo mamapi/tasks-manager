@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import axios from 'axios';
 import { Button } from 'semantic-ui-react'
 import History from './History'
@@ -44,14 +45,14 @@ class Show extends Component {
                 <History history={this.state.history} />
 
                 <Button.Group>
-                    <Button color="green" href={`/edit/${this.state.task.id}`}>Edit</Button>
+                    <Button color="green" as={Link} to={`/edit/${this.state.task.id}`}>Edit</Button>
                     <Button.Or />
-                    <Button color="red" onClick={this.delete.bind(this, this.state.task.id)}>Delete</Button>
+                    <Button color="red" onClick={() => this.delete(this.state.task.id)}>Delete</Button>
                     <Button.Or />
-                    <Button href="/tasks">Close</Button>
+                    <Button as={Link} to='/tasks'>Close</Button>
                 </Button.Group>
 
-            </div>
+            </div >
         );
     }
 }

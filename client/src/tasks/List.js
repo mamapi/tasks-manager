@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import ListRow from './ListRow'
 import { Table, Button, Icon } from 'semantic-ui-react'
@@ -39,7 +40,7 @@ class List extends Component {
   render() {
     return (
       <div>
-        <Button primary icon href="/create">
+        <Button primary icon as={Link} to="/create">
           <Icon name='add' /> Add Task
         </Button>
 
